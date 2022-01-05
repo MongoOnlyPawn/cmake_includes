@@ -1,8 +1,16 @@
-include(cmake/StandardProjectSettings.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/StandardProjectSettings.cmake)
 
 # Link this 'library' to set the c++ standard / compile-time options requested
 add_library(project_options INTERFACE)
 target_compile_features(project_options INTERFACE cxx_std_17)
+
+set(CMAKE_CXX_STANDARD 17)
+
+if(MSVC)
+    # Force MSVC to conform to the standard
+    # https://devblogs.microsoft.com/cppblog/msvc-now-correctly-reports-__cplusplus/
+    add_compile_options(/Zc:__cplusplus)
+endif()
 
 if(CMAKE_CXX_COMPILER_ID MATCHES ".*Clang")
     option(
@@ -22,21 +30,21 @@ option(ENABLE_TESTING "Enable Test Builds" ON)
 add_library(project_warnings INTERFACE)
 
 # standard compiler warnings
-include(cmake/CompilerWarnings.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/CompilerWarnings.cmake)
 set_project_warnings(project_warnings)
 
 # sanitizer options if supported by compiler
-include(cmake/Sanitizers.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/Sanitizers.cmake)
 enable_sanitizers(project_options)
 
 # enable doxygen
-include(cmake/Doxygen.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/Doxygen.cmake)
 enable_doxygen()
 
 # allow for static analysis options
-include(cmake/StaticAnalyzers.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/StaticAnalyzers.cmake)
 
-include(cmake/Conan.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/Conan.cmake)
 run_conan()
 
 option(ENABLE_PCH "Enable Precompiled Headers" OFF)
