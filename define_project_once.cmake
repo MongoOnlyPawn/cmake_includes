@@ -1,16 +1,26 @@
+#! define_project_once
+# \arg: projectName The name of the project
+#
 # Define this as a macro so that the return statement, if necessary, will return
 # control to the parent directory.
-macro (define_project_once)
-    if ((DEFINED ${ARGV0}_SOURCE_DIR)
+macro (define_project_once projectName)
+
+    if (NOT ${ARGC} EQUAL 1)
+        message(FATAL "Usage: define_project_once(<project-name>)")
+    endif ()
+
+    if ((DEFINED ${projectName}_SOURCE_DIR)
         AND (NOT
-             ${ARGV0}_SOURCE_DIR
+            ${projectName}_SOURCE_DIR
              STREQUAL
              CMAKE_CURRENT_SOURCE_DIR
             ))
-        message("Ignoring ${ARGV0} in ${CMAKE_CURRENT_SOURCE_DIR}. "
-                "Already added: ${${ARGV0}_SOURCE_DIR}")
+
+        message(
+            "Ignoring ${projectName} in ${CMAKE_CURRENT_SOURCE_DIR}. "
+            "Already added: ${${projectName}_SOURCE_DIR}")
+
         return()
     endif ()
 
-    message("Allowing project definition to proceed for ${ARGV0}")
 endmacro ()
