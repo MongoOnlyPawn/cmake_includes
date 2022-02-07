@@ -19,7 +19,14 @@ if (${CMAKE_CXX_COMPILER_ID} MATCHES ".*Clang")
     endif ()
 endif ()
 
-option(ENABLE_TESTING "Enable Test Builds" ON)
+if (CONAN_EXPORTED)
+    set(ENABLES_DEFAULT OFF)
+else ()
+    set(ENABLES_DEFAULT ON)
+endif ()
+
+option(ENABLE_TESTING "Enable Test Builds" ${ENABLES_DEFAULT})
+
 option(ENABLE_PCH "Enable Precompiled Headers" OFF)
 option(RECURSIVE_BUILD_TESTS "Build tests of all subprojects" OFF)
 
