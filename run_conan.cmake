@@ -23,15 +23,15 @@ macro (run_conan)
             URL
             https://center.conan.io)
 
-        # set(
-        #   bincraftersUrl
-        #   https://bincrafters.jfrog.io/artifactory/api/conan/api/public-conan)
-        #
-        # conan_add_remote(
-        #     NAME
-        #     bincrafters
-        #     URL
-        #     ${bincraftersUrl})
+        set(
+            jfrogUrl
+            "https://jivehelix.jfrog.io/artifactory/api/conan")
+
+        conan_add_remote(
+            NAME
+            jivehelix
+            URL
+            "${jfrogUrl}/default-conan-local")
 
         conan_cmake_configure(GENERATORS cmake)
 
@@ -41,7 +41,6 @@ macro (run_conan)
             PATH_OR_REFERENCE .
             PROFILE default
             BUILD missing
-            REMOTE conan-center
             SETTINGS ${settings})
 
     endif ()
