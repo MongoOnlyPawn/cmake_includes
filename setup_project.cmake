@@ -34,10 +34,10 @@ macro (setup_project)
             include(GNUInstallDirs)
         endif ()
 
-    endif ()
+        include(${_DECLARE_PROJECT_DIR}/run_conan.cmake)
+        run_conan()
 
-    include(${_DECLARE_PROJECT_DIR}/run_conan.cmake)
-    run_conan()
+    endif ()
 
     if (${ENABLE_UNITY})
         # Add for any project you want to apply unity builds for
