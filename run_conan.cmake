@@ -6,7 +6,7 @@ macro (run_conan)
 
     set(conanCmakeVersion "0.18.1")
     set(conanBaseUrl "https://raw.githubusercontent.com/conan-io/cmake-conan")
-    set(conanUrl "${conanBaseUrl}/v${conanCmakeVersion}/conan.cmake")
+    set(conanUrl "${conanBaseUrl}/${conanCmakeVersion}/conan.cmake")
 
     if (NOT CONAN_EXPORTED)
         # Download automatically, you can also just copy the conan.cmake file
