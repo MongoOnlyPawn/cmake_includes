@@ -4,7 +4,7 @@ macro (run_conan)
 
     message(STATUS "run_conan")
 
-    set(conanCmakeVersion "0.16.1")
+    set(conanCmakeVersion "0.18.1")
     set(conanBaseUrl "https://raw.githubusercontent.com/conan-io/cmake-conan")
     set(conanUrl "${conanBaseUrl}/v${conanCmakeVersion}/conan.cmake")
 
