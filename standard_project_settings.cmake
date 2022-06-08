@@ -72,3 +72,10 @@ if (ENABLE_IPO)
         message(SEND_ERROR "IPO is not supported: ${output}")
     endif ()
 endif ()
+
+
+if (MSVC)
+	set(windowed WIN32)
+elseif (APPLE)
+	set(windowed MACOSX_BUNDLE)
+endif ()

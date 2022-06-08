@@ -6,6 +6,8 @@ if (MSVC)
     # msvc-now-correctly-reports-__cplusplus/
     add_compile_options(/Zc:__cplusplus)
     add_compile_options(/Zc:alignedNew)
+    add_compile_options(/bigobj)
+    add_compile_options(/MP)
 endif ()
 
 if (${CMAKE_CXX_COMPILER_ID} MATCHES ".*Clang")
