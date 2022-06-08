@@ -8,6 +8,8 @@ if (MSVC)
     add_compile_options(/Zc:alignedNew)
     add_compile_options(/bigobj)
     add_compile_options(/MP)
+
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif ()
 
 if (${CMAKE_CXX_COMPILER_ID} MATCHES ".*Clang")
