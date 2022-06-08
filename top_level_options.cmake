@@ -9,8 +9,10 @@ if (MSVC)
     add_compile_options(/bigobj)
     add_compile_options(/MP)
 
+    # Makes static libraries by default.
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-    set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "MT$<$<CONFIG:Debug>:d>")
+    set(CMAKE_CXX_FLAGS_DEBUG "/MTd")
+    set(CMAKE_CXX_FLAGS_RELEASE "/MT")
 endif ()
 
 if (${CMAKE_CXX_COMPILER_ID} MATCHES ".*Clang")
