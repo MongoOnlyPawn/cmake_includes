@@ -11,7 +11,7 @@ if (MSVC)
 
     # Makes static libraries by default.
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-    set(CMAKE_CXX_FLAGS_DEBUG "/MTd")
+    set(CMAKE_CXX_FLAGS_DEBUG "/MTd /Od /Z7")
     set(CMAKE_CXX_FLAGS_RELEASE "/MT")
 endif ()
 
