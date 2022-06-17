@@ -180,7 +180,7 @@ with section("lint"):
   # scope
   local_var_pattern = '^[a-z]+(?:[A-Z0-9][a-z0-9]+)*'
 
-  # regular expression pattern describing valid names for privatedirectory
+  # regular expression pattern describing valid names for private directory
   # variables
   private_var_pattern = '_[0-9a-z_]+'
 

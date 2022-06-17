@@ -5,7 +5,7 @@ include(${_DECLARE_PROJECT_DIR}/prevent_in_source_builds.cmake)
 #! setup_project
 # Configures project settings and conan dependencies.
 macro (setup_project)
-
+    
     if (${CMAKE_VERSION} VERSION_LESS "3.21")
         # Compute our own top-level check
         if (${CMAKE_PROJECT_NAME} STREQUAL ${PROJECT_NAME})
@@ -25,6 +25,7 @@ macro (setup_project)
 
         include(${_DECLARE_PROJECT_DIR}/top_level_options.cmake)
         include(${_DECLARE_PROJECT_DIR}/standard_project_settings.cmake)
+        include(${_DECLARE_PROJECT_DIR}/add_version_header.cmake)
 
         if (ENABLE_TESTING)
             enable_testing()

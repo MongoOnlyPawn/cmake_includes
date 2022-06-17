@@ -1,0 +1,5 @@
+#pragma once
+
+#define BUILD_REVISION "@buildRevision@"
+#define BUILD_TAG "@buildTag@"
+#define BUILD_TIME "@buildTime@"
