@@ -35,6 +35,6 @@ else ()
 
 endif ()
 
-string(TIMESTAMP buildTime)
+string(TIMESTAMP buildTime UTC)
 
 configure_file(${templateFile} ${outputDirectory}/git_revision.h @ONLY)
