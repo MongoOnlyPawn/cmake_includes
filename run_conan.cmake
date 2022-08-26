@@ -39,7 +39,6 @@ macro (run_conan)
 
         conan_cmake_install(
             PATH_OR_REFERENCE .
-            PROFILE default
             BUILD missing
             SETTINGS ${settings})
 
