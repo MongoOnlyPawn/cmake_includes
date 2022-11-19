@@ -9,7 +9,6 @@ macro (run_conan)
     set(conanUrl "${conanBaseUrl}/${conanCmakeVersion}/conan.cmake")
 
     if (NOT CONAN_EXPORTED)
-        # Download automatically, you can also just copy the conan.cmake file
         if (NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
             message(STATUS "Downloading conan.cmake from ${conanUrl}")
             file(DOWNLOAD "${conanUrl}" "${CMAKE_BINARY_DIR}/conan.cmake")
@@ -33,14 +32,19 @@ macro (run_conan)
             URL
             "${jfrogUrl}/default-conan-local")
 
-        conan_cmake_configure(GENERATORS cmake)
+        if (CONAN_CMAKE_PROFILE)
+            conan_cmake_install(
+                PATH_OR_REFERENCE .
+                PROFILE ${CONAN_CMAKE_PROFILE}
+                BUILD missing)
+        else ()
+            conan_cmake_autodetect(settings)
 
-        conan_cmake_autodetect(settings)
-
-        conan_cmake_install(
-            PATH_OR_REFERENCE .
-            BUILD missing
-            SETTINGS ${settings})
+            conan_cmake_install(
+                PATH_OR_REFERENCE .
+                BUILD missing
+                SETTINGS ${settings})
+        endif ()
 
     endif ()
 
@@ -49,18 +53,5 @@ macro (run_conan)
     # https://docs.conan.io/en/latest/integrations/build_system/cmake/
     # cmake_generator.html#targets-approach
     conan_basic_setup(TARGETS)
-
-    # conan_cmake_run(
-    #     REQUIRES
-    #     ${CONAN_EXTRA_REQUIRES}
-    #     catch2/2.12.1
-    #     OPTIONS
-    #     ${CONAN_EXTRA_OPTIONS}
-    #     BASIC_SETUP
-    #     CMAKE_TARGETS
-    #     BUILD
-    #     missing)
-
-
 
 endmacro ()

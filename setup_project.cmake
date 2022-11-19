@@ -5,7 +5,7 @@ include(${_DECLARE_PROJECT_DIR}/prevent_in_source_builds.cmake)
 #! setup_project
 # Configures project settings and conan dependencies.
 macro (setup_project)
-    
+
     if (${CMAKE_VERSION} VERSION_LESS "3.21")
         # Compute our own top-level check
         if (${CMAKE_PROJECT_NAME} STREQUAL ${PROJECT_NAME})
@@ -20,6 +20,10 @@ macro (setup_project)
         if (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/conanfile.py)
             configure_file(
                 ${CMAKE_CURRENT_SOURCE_DIR}/conanfile.py
+                ${CMAKE_BINARY_DIR})
+        elseif (EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/conanfile.txt)
+            configure_file(
+                ${CMAKE_CURRENT_SOURCE_DIR}/conanfile.txt
                 ${CMAKE_BINARY_DIR})
         endif ()
 
