@@ -1,6 +1,11 @@
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD 20)
 
+if (NOT MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -ftemplate-backtrace-limit=0")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmessage-length=120")
+endif ()
+
 # Link this 'library' to set the c++ standard / compile-time options
 # requested
 add_library(project_options INTERFACE)
