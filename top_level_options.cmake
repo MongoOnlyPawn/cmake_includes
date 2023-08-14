@@ -11,8 +11,8 @@ if (MSVC)
 
     # Makes static libraries by default.
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-    set(CMAKE_CXX_FLAGS_DEBUG "/MTd /Od /Z7")
-    set(CMAKE_CXX_FLAGS_RELEASE "/MT")
+    set(CMAKE_CXX_FLAGS_DEBUG "/MTd /Od /Z7 /DDEBUG")
+    set(CMAKE_CXX_FLAGS_RELEASE "/MT /DNDEBUG")
 endif ()
 
 if (${CMAKE_CXX_COMPILER_ID} MATCHES ".*Clang")
